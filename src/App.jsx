@@ -2,11 +2,11 @@ import { useState } from "react";
 import "./App.scss";
 import axios from "axios";
 import { Picture } from "./components/Picture";
+import { Footer } from "./components/Footer";
 
 export const App = () => {
   const [search, setSearch] = useState("")
   const [photos, setPhotos] = useState([])
-  const KEY = "mRAPgdpvuj8fZNYF1LIj3pyFUM08nCryQt3XK7HicQM"
 
   const searchImages = (e) => {
     e.preventDefault()
@@ -15,13 +15,12 @@ export const App = () => {
     }else{
       // Call API
       fetchImages()
-      console.log("Search term: ", search)
     }
   }
 
   const fetchImages = async () => {
     try {
-      const url = `https://api.unsplash.com/search/photos?page=1&query=${search}&client_id=${KEY}`
+      const url = `${import.meta.env.VITE_API_URL}?page=1&query=${search}&client_id=${import.meta.env.VITE_API_KEY}`
       const response = await axios.get(url)
       const { results } = response.data
       if  (results.length === 0) {
@@ -55,6 +54,7 @@ export const App = () => {
           )
         })}
       </div>
+      <Footer/>
     </div>
   );
 };

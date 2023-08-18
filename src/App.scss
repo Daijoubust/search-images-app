@@ -16,9 +16,10 @@
     }
   }
   .search-result {
-    @apply w-4/5 mt-24 mx-auto mb-12 grid grid-cols-3 gap-5;
+    @apply w-4/5 mt-24 mx-auto mb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5;
+    grid-auto-flow: dense;
     img {
-      @apply w-full h-64 object-cover rounded-lg;
+      @apply w-full h-full max-h-72 object-cover rounded-lg;
     }
   }
 }
